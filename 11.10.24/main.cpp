@@ -48,7 +48,6 @@ void Foo(Base &a)
 {
 	a.PrintW();
 }
-
 class Plant {
 public:
 
@@ -59,12 +58,12 @@ public:
 	virtual void info() const {
 		std::cout << "Íàçâàíèå: " << name << "\n"
 			<< "Ðàçìåð: " << size << "\n"
-			<< "Âûñîòà: " << height << " ìåòðîâ\n";
+			<< "Âûñîòà: " << height << " â ìåòðàõ\n";
 	}
 protected:
 	std::string name;
-	std::string size;  
-	float height;      
+	std::string size;
+	float height;
 
 
 };
@@ -95,6 +94,56 @@ public:
 };
 
 
+
+
+
+
+
+class fetus {
+public:
+
+	fetus(const std::string& name, float weight)
+		: name(name),
+		weight(weight){}
+
+
+	virtual void info() const {
+		std::cout << "Íàçâàíèå: " << name << "\n"
+			<< "Âåñ: " << weight << " êã\n";
+	}
+protected:
+	std::string name; 
+	float weight;
+
+
+};
+
+
+class blueberries : public fetus {
+public:
+
+	blueberries(const std::string& name, float weight)
+		: fetus(name,weight) {}
+
+
+	void info() const override {
+		fetus::info();
+	}
+};
+
+class banana : public fetus{
+public:
+
+	banana(const std::string& name, float weight)
+		: fetus(name,weight) {}
+
+
+	void info() const override {
+		fetus::info();
+	}
+};
+
+
 // ÅÑËÈ ÏÅÐÅÄÀ×À ÂÅÄÅÒÑß  ÏÎ ÏÀÐÀÌÅÒÐÓ ÒÎ ÏÐÎÈÑÕÎÄÈÒ ÎÏÅÐÀÖÈß upcast ÊÎÒÎÐÀß ÎÒÑÅÊÀÅÒ ÎÒ ÂÑÅ ÑÂÎÉÑÒÂÀ ÍÀÑËÅÄÍÛÕ ÊËÀÑÑÎÂ È ÑÎÇÄÀÅÒ ÍÎÂÛÉ ÎÁÚÅÊÒ ÁÀÇÎÂÎÃÎ 
 // ÍÀ ÈÕ ÎÑÍÎÂÅ 
 int main() {
@@ -108,13 +157,20 @@ int main() {
 	Foo(*A);
 	delete a;
 	delete A;*/
-	The_shrub shrub("Êóñò", 1.2);
-	Tree tree("Äåðåâî", 5.5);
+	The_shrub shrub("Êóñò", 1.5);
+	Tree tree("Äåðåâî", 7);
 	// Âûâîä èíôîðìàöèè î ðàñòåíèÿõ
 	std::cout << "Èíôîðìàöèÿ î êóñòå:\n";
 	shrub.info();
 	std::cout << "\nÈíôîðìàöèÿ î äåðåâå:\n";
 	tree.info();
+	blueberries bb("×åðíèêà", 1);
+	banana banana("Áàíàí", 5);
+	// Âûâîä èíôîðìàöèè î ðàñòåíèÿõ
+	std::cout << "Èíôîðìàöèÿ î ÷åðíèêå:\n";
+	bb.info();
+	std::cout << "\nÈíôîðìàöèÿ î áàíàíå:\n";
+	banana.info();
 
 	return 0;
 }
